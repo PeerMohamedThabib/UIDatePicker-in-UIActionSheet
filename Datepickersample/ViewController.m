@@ -38,12 +38,15 @@
     
     NSMutableArray *barItems = [[NSMutableArray alloc] init];
     
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(datePickerDoneClick:)];
+    [barItems addObject:doneBtn];
+    
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [barItems addObject:flexSpace];
     
     
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(datePickerDoneClick:)];
-    [barItems addObject:doneBtn];
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(datePickerCancelClick:)];
+    [barItems addObject:cancelBtn];
     
     
     [pickerDateToolbar setItems:barItems animated:YES];
@@ -64,6 +67,11 @@
     
     self.datelabel.text = dateString;
     [self.dateActionSheet dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+-(void)datePickerCancelClick:(id)sender
+{
+    [self.dateActionSheet dismissWithClickedButtonIndex:1 animated:YES];
 }
 
 
